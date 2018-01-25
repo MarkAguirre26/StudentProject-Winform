@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CalbayogHospitalSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Diagnose">
+          <Key>
+            <PropertyRef Name="DiagnosisNo" />
+          </Key>
+          <Property Name="DiagnosisNo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HospitalNo" Type="bigint" />
+          <Property Name="DateAdmitted" Type="date" />
+          <Property Name="DateDischarge" Type="date" />
+          <Property Name="AdmissionType" Type="nchar" MaxLength="10" />
+          <Property Name="Physician" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdmissionDiagnosis" Type="nvarchar(max)" />
+          <Property Name="PrincipalDiagnosis" Type="nvarchar(max)" />
+          <Property Name="PrinProce" Type="nvarchar(max)" />
+          <Property Name="Disposition" Type="nchar" MaxLength="10" />
+          <Property Name="Results" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="UserType" Type="nchar" MaxLength="10" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Username" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="PrescriptID" />
+          </Key>
+          <Property Name="PrescriptID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiagnosisID" Type="bigint" />
+          <Property Name="HospitalNo" Type="bigint" />
+          <Property Name="Prescription" Type="nvarchar(max)" />
+          <Property Name="DatePrescribed" Type="date" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="HospitalNo" />
+          </Key>
+          <Property Name="HospitalNo" Type="bigint" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Midname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Birthplace" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Barangay" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Father" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mother" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="PrescriptNo" />
+          </Key>
+          <Property Name="PrescriptNo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiagnosisNo" Type="bigint" />
+          <Property Name="HospitalNo" Type="bigint" />
+          <Property Name="Medications" Type="nvarchar(max)" />
+          <Property Name="DatePrescribed" Type="date" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="DiagnosisID" />
+          </Key>
+          <Property Name="DiagnosisID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HospitalNo" Type="bigint" />
+          <Property Name="DateAdmitted" Type="date" />
+          <Property Name="DateDischarge" Type="date" />
+          <Property Name="AdmissionType" Type="nchar" MaxLength="10" />
+          <Property Name="Physician" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdmissionDiagnosis" Type="nvarchar(max)" />
+          <Property Name="PrincipalDiagnosis" Type="nvarchar(max)" />
+          <Property Name="PrinProcedure" Type="nvarchar(max)" />
+          <Property Name="Disposition" Type="nchar" MaxLength="10" />
+          <Property Name="Results" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="CalbayogHospitalSystemModelStoreContainer">
+          <EntitySet Name="Diagnose" EntityType="Self.Diagnose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CalbayogHospitalSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Diagnose">
+          <Key>
+            <PropertyRef Name="DiagnosisNo" />
+          </Key>
+          <Property Name="DiagnosisNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HospitalNo" Type="Int64" />
+          <Property Name="DateAdmitted" Type="DateTime" Precision="0" />
+          <Property Name="DateDischarge" Type="DateTime" Precision="0" />
+          <Property Name="AdmissionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Physician" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdmissionDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrincipalDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrinProce" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Disposition" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Results" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="UserType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Medication">
+          <Key>
+            <PropertyRef Name="PrescriptID" />
+          </Key>
+          <Property Name="PrescriptID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiagnosisID" Type="Int64" />
+          <Property Name="HospitalNo" Type="Int64" />
+          <Property Name="Prescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePrescribed" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="HospitalNo" />
+          </Key>
+          <Property Name="HospitalNo" Type="Int64" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Midname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Birthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Barangay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Father" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mother" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="PrescriptNo" />
+          </Key>
+          <Property Name="PrescriptNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiagnosisNo" Type="Int64" />
+          <Property Name="HospitalNo" Type="Int64" />
+          <Property Name="Medications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePrescribed" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="DiagnosisID" />
+          </Key>
+          <Property Name="DiagnosisID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HospitalNo" Type="Int64" />
+          <Property Name="DateAdmitted" Type="DateTime" Precision="0" />
+          <Property Name="DateDischarge" Type="DateTime" Precision="0" />
+          <Property Name="AdmissionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Physician" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdmissionDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrincipalDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrinProcedure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Disposition" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Results" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="CalbayogHospitalSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Diagnoses" EntityType="Self.Diagnose" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="Medications" EntityType="Self.Medication" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
+          <EntitySet Name="Treatments" EntityType="Self.Treatment" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CalbayogHospitalSystemModelStoreContainer" CdmEntityContainer="CalbayogHospitalSystemEntities">
+          <EntitySetMapping Name="Diagnoses">
+            <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Diagnose">
+              <MappingFragment StoreEntitySet="Diagnose">
+                <ScalarProperty Name="DiagnosisNo" ColumnName="DiagnosisNo" />
+                <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+                <ScalarProperty Name="DateAdmitted" ColumnName="DateAdmitted" />
+                <ScalarProperty Name="DateDischarge" ColumnName="DateDischarge" />
+                <ScalarProperty Name="AdmissionType" ColumnName="AdmissionType" />
+                <ScalarProperty Name="Physician" ColumnName="Physician" />
+                <ScalarProperty Name="AdmissionDiagnosis" ColumnName="AdmissionDiagnosis" />
+                <ScalarProperty Name="PrincipalDiagnosis" ColumnName="PrincipalDiagnosis" />
+                <ScalarProperty Name="PrinProce" ColumnName="PrinProce" />
+                <ScalarProperty Name="Disposition" ColumnName="Disposition" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medications">
+            <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Medication">
+              <MappingFragment StoreEntitySet="Medication">
+                <ScalarProperty Name="PrescriptID" ColumnName="PrescriptID" />
+                <ScalarProperty Name="DiagnosisID" ColumnName="DiagnosisID" />
+                <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+                <ScalarProperty Name="DatePrescribed" ColumnName="DatePrescribed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Midname" ColumnName="Midname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Birthplace" ColumnName="Birthplace" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Father" ColumnName="Father" />
+                <ScalarProperty Name="Mother" ColumnName="Mother" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescriptions">
+            <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="PrescriptNo" ColumnName="PrescriptNo" />
+                <ScalarProperty Name="DiagnosisNo" ColumnName="DiagnosisNo" />
+                <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+                <ScalarProperty Name="Medications" ColumnName="Medications" />
+                <ScalarProperty Name="DatePrescribed" ColumnName="DatePrescribed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Treatments">
+            <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Treatment">
+              <MappingFragment StoreEntitySet="Treatment">
+                <ScalarProperty Name="DiagnosisID" ColumnName="DiagnosisID" />
+                <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+                <ScalarProperty Name="DateAdmitted" ColumnName="DateAdmitted" />
+                <ScalarProperty Name="DateDischarge" ColumnName="DateDischarge" />
+                <ScalarProperty Name="AdmissionType" ColumnName="AdmissionType" />
+                <ScalarProperty Name="Physician" ColumnName="Physician" />
+                <ScalarProperty Name="AdmissionDiagnosis" ColumnName="AdmissionDiagnosis" />
+                <ScalarProperty Name="PrincipalDiagnosis" ColumnName="PrincipalDiagnosis" />
+                <ScalarProperty Name="PrinProcedure" ColumnName="PrinProcedure" />
+                <ScalarProperty Name="Disposition" ColumnName="Disposition" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

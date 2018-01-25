@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CalbayogHospitalSystemModelStoreContainer" CdmEntityContainer="CalbayogHospitalSystemEntities">
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Midname" ColumnName="Midname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Birthplace" ColumnName="Birthplace" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Barangay" ColumnName="Barangay" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Father" ColumnName="Father" />
+          <ScalarProperty Name="Mother" ColumnName="Mother" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prescriptions">
+      <EntityTypeMapping TypeName="CalbayogHospitalSystemModel.Prescription">
+        <MappingFragment StoreEntitySet="Prescription">
+          <ScalarProperty Name="PrescriptNo" ColumnName="PrescriptNo" />
+          <ScalarProperty Name="DiagnosisNo" ColumnName="DiagnosisNo" />
+          <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+          <ScalarProperty Name="Medications" ColumnName="Medications" />
+          <ScalarProperty Name="DatePrescribed" ColumnName="DatePrescribed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medications">
+      <EntityTypeMapping TypeName="IsTypeOf(CalbayogHospitalSystemModel.Medication)">
+        <MappingFragment StoreEntitySet="Medication">
+          <ScalarProperty Name="PrescriptID" ColumnName="PrescriptID" />
+          <ScalarProperty Name="DatePrescribed" ColumnName="DatePrescribed" />
+          <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+          <ScalarProperty Name="HospitalNo" ColumnName="HospitalNo" />
+          <ScalarProperty Name="DiagnosisID" ColumnName="DiagnosisID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diagnoses">
+      <EntityTypeMapping TypeName="IsTypeOf(CalbayogHospitalSystemModel.Diagnose)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <MappingFragment StoreEntitySet="Diagnose">
+          <ScalarProperty Name="Results" ColumnName="Results" />
+          <ScalarProperty Name="Disposition" ColumnName="Disposition" />
+          <ScalarProperty Name="PrinProce" ColumnName="PrinProce" />
+          <ScalarProperty Name="PrincipalDiagnosis" ColumnName="PrincipalDiagnosis" />
+          <ScalarProperty Name="AdmissionDiagnosis" ColumnName="AdmissionDiagnosis" />
+          <ScalarProperty Name="Physician" ColumnName="Physician" />
+          <ScalarProperty Name="AdmissionType" ColumnName="AdmissionType" />
+          <ScalarProperty Name="DateDischarge" ColumnName="DateDischarge" />
+          <ScalarProperty Name="DateAdmitted" ColumnName="DateAdmitted" />
+          <ScalarProperty Name="DiagnosisNo" ColumnName="DiagnosisNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

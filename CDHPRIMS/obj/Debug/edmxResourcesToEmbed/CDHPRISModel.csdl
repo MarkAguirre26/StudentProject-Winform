@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CalbayogHospitalSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Diagnose">
+    <Property Name="DiagnosisNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HospitalNo" Type="Int64" />
+    <Property Name="DateAdmitted" Type="DateTime" Precision="0" />
+    <Property Name="DateDischarge" Type="DateTime" Precision="0" />
+    <Property Name="AdmissionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Physician" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdmissionDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrincipalDiagnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrinProce" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Disposition" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Results" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="UserType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="HospitalNo" />
+    </Key>
+    <Property Name="HospitalNo" Type="Int64" Nullable="false" />
+    <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Midname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Birthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Barangay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Father" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mother" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="PrescriptNo" />
+    </Key>
+    <Property Name="PrescriptNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiagnosisNo" Type="Int64" />
+    <Property Name="HospitalNo" Type="Int64" />
+    <Property Name="Medications" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DatePrescribed" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="CalbayogHospitalSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Logs" EntityType="Self.Log" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
+    <EntitySet Name="Medications" EntityType="CalbayogHospitalSystemModel.Medication" />
+    <EntitySet Name="Diagnoses" EntityType="CalbayogHospitalSystemModel.Diagnose" />
+  </EntityContainer>
+  <EntityType Name="Medication">
+    <Key>
+      <PropertyRef Name="PrescriptID" />
+    </Key>
+    <Property Name="PrescriptID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiagnosisID" Type="Int64" />
+    <Property Name="HospitalNo" Type="Int64" />
+    <Property Name="Prescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DatePrescribed" Type="DateTime" Precision="0" />
+  </EntityType>
+</Schema>

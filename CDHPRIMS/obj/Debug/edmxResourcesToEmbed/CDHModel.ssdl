@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CalbayogHospitalSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Diagnose">
+    <Key>
+      <PropertyRef Name="DiagnosisNo" />
+    </Key>
+    <Property Name="DiagnosisNo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HospitalNo" Type="bigint" />
+    <Property Name="DateAdmitted" Type="date" />
+    <Property Name="DateDischarge" Type="date" />
+    <Property Name="AdmissionType" Type="nchar" MaxLength="10" />
+    <Property Name="Physician" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdmissionDiagnosis" Type="nvarchar(max)" />
+    <Property Name="PrincipalDiagnosis" Type="nvarchar(max)" />
+    <Property Name="PrinProce" Type="nvarchar(max)" />
+    <Property Name="Disposition" Type="nchar" MaxLength="10" />
+    <Property Name="Results" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="UserType" Type="nchar" MaxLength="10" />
+    <Property Name="Fullname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Username" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Medication">
+    <Key>
+      <PropertyRef Name="PrescriptID" />
+    </Key>
+    <Property Name="PrescriptID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiagnosisID" Type="bigint" />
+    <Property Name="HospitalNo" Type="bigint" />
+    <Property Name="Prescription" Type="nvarchar(max)" />
+    <Property Name="DatePrescribed" Type="date" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="HospitalNo" />
+    </Key>
+    <Property Name="HospitalNo" Type="bigint" Nullable="false" />
+    <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Midname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Birthplace" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Barangay" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nchar" MaxLength="10" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Father" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mother" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Prescription">
+    <Key>
+      <PropertyRef Name="PrescriptNo" />
+    </Key>
+    <Property Name="PrescriptNo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiagnosisNo" Type="bigint" />
+    <Property Name="HospitalNo" Type="bigint" />
+    <Property Name="Medications" Type="nvarchar(max)" />
+    <Property Name="DatePrescribed" Type="date" />
+  </EntityType>
+  <EntityType Name="Treatment">
+    <Key>
+      <PropertyRef Name="DiagnosisID" />
+    </Key>
+    <Property Name="DiagnosisID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HospitalNo" Type="bigint" />
+    <Property Name="DateAdmitted" Type="date" />
+    <Property Name="DateDischarge" Type="date" />
+    <Property Name="AdmissionType" Type="nchar" MaxLength="10" />
+    <Property Name="Physician" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdmissionDiagnosis" Type="nvarchar(max)" />
+    <Property Name="PrincipalDiagnosis" Type="nvarchar(max)" />
+    <Property Name="PrinProcedure" Type="nvarchar(max)" />
+    <Property Name="Disposition" Type="nchar" MaxLength="10" />
+    <Property Name="Results" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="CalbayogHospitalSystemModelStoreContainer">
+    <EntitySet Name="Diagnose" EntityType="Self.Diagnose" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Medication" EntityType="Self.Medication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
